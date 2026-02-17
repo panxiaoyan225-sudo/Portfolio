@@ -1,0 +1,19 @@
+-------------------------------------------------- 
+Task Started: 17-Feb-2026 13:41:28.64 
+Traceback (most recent call last):
+  File "C:\Python\Portfolio\monitor_script.py", line 54, in <module>
+    monitor_and_warm_portfolio()
+  File "C:\Python\Portfolio\monitor_script.py", line 40, in monitor_and_warm_portfolio
+    print(f"\u2705 Portfolio is warm and live. (Status: {response.status_code})")
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 0: character maps to <undefined>
+Task Finished: 17-Feb-2026 13:41:29.56 
+-------------------------------------------------- 
+-------------------------------------------------- 
+Task Started: 17-Feb-2026 13:43:47.93 
+✅ Portfolio is warm and live. (Status: 200)
+🚀 Slack notification sent successfully!
+Task Finished: 17-Feb-2026 13:43:49.17 
+-------------------------------------------------- 
