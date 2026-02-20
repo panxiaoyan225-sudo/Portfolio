@@ -33,6 +33,8 @@ def send_slack_notification(message):
 def monitor_and_warm_portfolio():
     try:
         # Pinging the site to wake up the Cloud Run instance
+        # Send an HTTP GET request to the portfolio URL with a 15-second timeout.
+        # This checks if the site is reachable and responsive (used to "warm" the Cloud Run instance).
         response = requests.get(PORTFOLIO_URL, timeout=15)
         
         # Check if the HTTP response status code is 200, which means the portfolio site is successfully reachable and live
