@@ -7,24 +7,13 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
-
-strategy:
-  matrix:
-    Python38:
-      python.version: '3.8'
-    Python39:
-      python.version: '3.9'
-    Python310:
-      python.version: '3.10'
-    Python311:
-      python.version: '3.11'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+    versionSpec: '3.9'
+    addToPath: true
 
 - script: |
     python -m pip install --upgrade pip
@@ -32,6 +21,8 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+    # This runs your portfolio monitor once to ensure it works
+    python monitor_portfolio.py
+  env:
+    SLACK_WEBHOOK_URL: $(SLACK_WEBHOOK) # Secret variable stored in Azure
+  displayName: 'Run Portfolio Monitor Test'
