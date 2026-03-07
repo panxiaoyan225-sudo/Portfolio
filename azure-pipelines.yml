@@ -1,10 +1,18 @@
-trigger:
-- main
+# Disable the automatic trigger on code push to avoid double-runs
+trigger: none
+
+# This is your cron job configuration
+schedules:
+- cron: "0 */4 * * *"
+  displayName: "Every 4 Hours Portfolio Warm-up"
+  branches:
+    include:
+    - main
+  always: true # Set to true to run even if you haven't changed the code
 
 pool:
   vmImage: 'ubuntu-latest'
 
-# This links your pipeline to the 'Portfolio-Secrets' group in the Library
 variables:
 - group: 'Portfolio-Secrets'
 
@@ -21,9 +29,7 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    # This runs your portfolio monitor once to ensure it works
     python monitor_portfolio.py
   env:
-    # This maps the Library secret to an Environment Variable the script can read
-    SLACK_WEBHOOK_URL: $(SLACK_WEBHOOK) 
-  displayName: 'Run Portfolio Monitor Test'
+    SLACK_WEBHOOK_URL: $(SLACK_WEBHOOK)
+  displayName: 'Run Portfolio Monitor'
