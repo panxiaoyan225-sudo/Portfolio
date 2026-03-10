@@ -1,18 +1,13 @@
 # Disable the automatic trigger on code push to avoid double-runs
-#trigger: none
-trigger:
-  branches:
-    include:
-      - main # enable the trigger, can be removed to disable the trigger
+trigger: none  # Disables trigger on code push
 
-# This is your cron job configuration
 schedules:
-- cron: "0 */4 * * *"
-  displayName: "Every 4 Hours Portfolio Warm-up"
+- cron: "0 0 1 1 *" # This technically runs once a year on Jan 1st
+  displayName: "Manual Only Mode"
   branches:
     include:
     - main
-  always: true # Set to true to run even if you haven't changed the code
+  always: false # Change this to false so it only runs if code changes (which it won't)
 
 # The 'pool' section specifies the environment (virtual machine image) in which the pipeline's jobs will run.
 # 'ubuntu-latest' tells Azure Pipelines to use the latest available Ubuntu Linux virtual machine for this job.
