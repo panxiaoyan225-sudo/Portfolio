@@ -2,7 +2,10 @@
 trigger: none  # Disables trigger on code push
 
 schedules:
-- cron: "0 0 1 1 *" # This technically runs once a year on Jan 1st
+# To input scheduled times for a pipeline trigger, use the cron syntax in the "cron" field.
+# The numbers correspond to: minute, hour, day of month, month, day of week.
+# For example, to run at midnight on January 1st every year, input:
+- cron: "0 0 1 1 *"  # minute hour day(month) month day(week)
   displayName: "Manual Only Mode"
   branches:
     include:
