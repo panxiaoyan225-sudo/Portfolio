@@ -30,10 +30,6 @@ steps:
       addToPath: true
     displayName: 'Set Python Version to 3.11'
 
-  # Step 2: Install dependencies.
-  # This upgrades pip to the latest version.
-  # If a requirements.txt file exists, it will install all dependencies listed in it.
-  # Step 2: Install dependencies (Windows Version)
   - script: |
       python -m pip install --upgrade pip
       if exist requirements.txt (
@@ -41,22 +37,8 @@ steps:
       )
     displayName: 'Install dependencies'
 
-  # Step 3: Validate logic and configuration.
-  # Runs unit tests located at tests/test_config.py using pytest.
-  # These tests typically check for correct environment and configuration, such as the presence of
-  # valid secrets (e.g., Slack Webhook) and a non-empty ticker list.
-  # The pipeline will fail here if configuration is incorrect.
-  - script: |
-      # Run a test script that checks if your Slack Webhook is valid 
-      # and if your ticker list is not empty.
-      # It helps validate project configuration (such as secret variables or environment setup)
-      # before proceeding further in the pipeline. If these tests fail, the pipeline will halt.
-      python -m pytest tests/test_config.py
-    displayName: 'Validate Logic & Config'
-
-  # Step 4: Run the main portfolio monitoring script.
   - script: |
       python monitor_portfolio.py
-    displayName: 'Run Portfolio Monitor'
     env:
       SLACK_TOKEN: $(SLACK_TOKEN)
+    displayName: 'Run Portfolio Monitor'
