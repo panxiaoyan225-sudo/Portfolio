@@ -54,9 +54,8 @@ steps:
     displayName: 'Validate Logic & Config'
 
   # Step 4: Run the main portfolio monitoring script.
-  # Passes the Slack webhook URL as an environment variable for notifications.
   - script: |
-    python monitor_portfolio.py
+      python monitor_portfolio.py
+    displayName: 'Run Portfolio Monitor'
     env:
       SLACK_TOKEN: $(SLACK_TOKEN)
-    displayName: 'Run Portfolio Monitor'
