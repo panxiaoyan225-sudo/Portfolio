@@ -1,16 +1,21 @@
 # Disable the automatic trigger on code push to avoid double-runs
-trigger: none  # Disables trigger on code push
+#trigger: none  # Disables trigger on code push
+# 1. Trigger for every git push to the main branch
+trigger:
+  branches:
+    include:
+    - main
 
 schedules:
 # To input scheduled times for a pipeline trigger, use the cron syntax in the "cron" field.
 # The numbers correspond to: minute, hour, day of month, month, day of week.
 # For example, to run at midnight on January 1st every year, input:
-- cron: "0 0 1 1 *"  # minute hour day(month) month day(week)
-  displayName: "Manual Only Mode"
+- cron: "0 0 1 * *"  # Runs at 00:00 on day-of-month 1
+  displayName: "Monthly Portfolio Warm-up"
   branches:
     include:
     - main
-  always: false # Change this to false so it only runs if code changes (which it won't)
+  always: true # Set to true so it runs even if you haven't changed any code
 
 # The 'pool' section specifies the environment (virtual machine image) in which the pipeline's jobs will run.
 # 'ubuntu-latest' tells Azure Pipelines to use the latest available Ubuntu Linux virtual machine for this job.
