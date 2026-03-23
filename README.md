@@ -1,6 +1,6 @@
 # Portfolio Monitor & Auto-Warmer
 
-Technical implementations of automated infrastructure workflows designed for high-reliability cloud environments. This framework bridges the gap between **Data Engineering efficiency** and **Strategic Risk management** through automated health checks and real-time anomaly detection.
+Production-grade CI/CD pipeline with dual-platform triggers (GitHub/Azure DevOps) handling automated monthly "heartbeat" runs, real-time anomaly detection, and seamless ETL syncing.
 
 ## 🎯 Project Philosophy
 
