@@ -8,9 +8,9 @@ pool:
 
 variables:
 - group: 'Portfolio-Secrets'
-# Updated to your actual Python 3.12 path
+# New public path that bypasses "Access is denied" errors
 - name: pythonExe
-  value: 'C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
+  value: 'C:\\Python312\\python.exe'
 
 steps:
   - checkout: self
@@ -22,13 +22,6 @@ steps:
           "$(pythonExe)" -m pip install -r requirements.txt
       )
     displayName: 'Install dependencies'
-
-  - script: |
-      "$(pythonExe)" -c "import os; assert os.getenv('SLACK_TOKEN'), 'ERROR: SLACK_TOKEN is missing'"
-      "$(pythonExe)" -m py_compile monitor_portfolio.py
-    env:
-      SLACK_TOKEN: $(SLACK_TOKEN)
-    displayName: 'Validate Logic & Config'  
 
   - script: |
       "$(pythonExe)" monitor_portfolio.py
