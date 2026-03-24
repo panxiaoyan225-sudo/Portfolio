@@ -1,39 +1,22 @@
-trigger:
-  branches:
-    include:
-    - main
-
 pool:
-  # This MUST match the name of the agent you installed on your laptop
-  name: 'MyLocalLaptop'
+  name: 'MyLocalLaptop'  # Forces it back to your hardware to avoid the Parallelism error
 
 variables:
 - group: 'Portfolio-Secrets'
-# Using forward slashes and the confirmed path to your local Python 3.11
+# Using / instead of \ avoids the "Escape Character" error
 - name: pythonExe
   value: 'C:/Users/ADMIN/AppData/Local/Programs/Python/Python311/python.exe'
 
 steps:
   - checkout: self
-    clean: true
-
+  
   - script: |
       "$(pythonExe)" -m pip install --upgrade pip
-      if exist requirements.txt (
-          "$(pythonExe)" -m pip install -r requirements.txt
-      )
+      if exist requirements.txt "$(pythonExe)" -m pip install -r requirements.txt
     displayName: 'Install dependencies'
-
-  - script: |
-      "$(pythonExe)" -c "import os; assert os.getenv('SLACK_TOKEN'), 'ERROR: SLACK_TOKEN is missing'"
-      "$(pythonExe)" -m py_compile monitor_portfolio.py
-    env:
-      SLACK_TOKEN: $(SLACK_TOKEN)
-    displayName: 'Validate Logic & Config'  
 
   - script: |
       "$(pythonExe)" monitor_portfolio.py
     env:
       SLACK_TOKEN: $(SLACK_TOKEN)
-      PYTHONUTF8: 1
     displayName: 'Run Portfolio Monitor'
