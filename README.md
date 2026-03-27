@@ -4,7 +4,7 @@ Production-grade CI/CD pipeline with triple-platform orchestration (GitHub Actio
 
 ## 🎯 Project Philosophy
 
-Most modern cloud-native applications suffer from "Cold Start" latency on serverless platforms. This project demonstrates a **high-performance, low-footprint architecture** optimized for Google Cloud Run. By transitioning from cloud-hosted agents to a **Self-Hosted Windows Agent**, I bypassed environment concurrency limits while maintaining a production-grade CI/CD lifecycle across multiple automation providers.
+Most modern cloud-native applications suffer from "Cold Start" latency on serverless platforms. This project demonstrates a **high-performance, low-footprint architecture** optimized for Google Cloud Run.
 
 ## 🏗️ System Architecture
 
