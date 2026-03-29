@@ -1,6 +1,6 @@
 schedules:
-- cron: "0 11 * * *"
-  displayName: "Daily Morning Warm-up (7 AM EST)"
+- cron: "30 10-23 * * *"
+  displayName: "Hourly Warm-up "
   branches:
     include:
     - main
