@@ -29,28 +29,29 @@ def send_slack_notification(message):
     except Exception as e:
         print(f"❌ Failed to connect to Slack: {e}")
 
-# 3. WARM-UP & MONITORING LOGIC
+# 3. WARM-UP LOGIC (Now returns the status instead of messaging)
 def monitor_and_warm_portfolio():
     try:
         # Pinging the site to wake up the Cloud Run instance
-        # Send an HTTP GET request to the portfolio URL with a 15-second timeout.
-        # This checks if the site is reachable and responsive (used to "warm" the Cloud Run instance).
         response = requests.get(PORTFOLIO_URL, timeout=15)
-        
-        # Check if the HTTP response status code is 200, which means the portfolio site is successfully reachable and live
-        if response.status_code == 200:
-            print(f"✅ Portfolio is warm and live. (Status: {response.status_code})")
-            msg=f"✅ Portfolio is warm and live. (Status: {response.status_code})"
-            send_slack_notification(msg)
-        else:
-            # Alert Slack if the site returns a 404, 500, or 403
-            msg = f"⚠️ *Portfolio Alert*: Site returned status `{response.status_code}`\nURL: {PORTFOLIO_URL}"
-            send_slack_notification(msg)
-            
+        return response.status_code
     except requests.exceptions.RequestException as e:
-        # Alert Slack if the site is completely unreachable
-        msg = f"🚨 *CRITICAL*: Portfolio is DOWN or unreachable!\nError: `{str(e)}`"
-        send_slack_notification(msg)
+        print(f"⚠️ Connection Error: {e}")
+        return None
 
+# 4. EXECUTION FLOW (The "Outside" logic)
 if __name__ == "__main__":
-    monitor_and_warm_portfolio()
+    # Perform the warm-up
+    status = monitor_and_warm_portfolio()
+    
+    # Decide on ONE message to send based on the result
+    if status == 200:
+        msg = f"✅ Portfolio is warm and live. (Status: {status})"
+        print(msg)
+        send_slack_notification(msg) # This now runs exactly ONCE per script execution
+    elif status:
+        msg = f"⚠️ *Portfolio Alert*: Site returned status {status}\nURL: {PORTFOLIO_URL}"
+        send_slack_notification(msg)
+    else:
+        msg = "🚨 *CRITICAL*: Portfolio is DOWN or unreachable!"
+        send_slack_notification(msg)
