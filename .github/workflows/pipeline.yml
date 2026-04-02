@@ -5,9 +5,9 @@ on:
     branches:
       - main
   schedule:
-    # This runs at 45 minutes past the hour
-    # 10:45 UTC is 6:45 AM EDT (Gatineau)
-    - cron: '45 10-23 * * *'
+    # This runs at 5 minutes past the hour
+    # 10:05 UTC is 6:05 AM EDT (Gatineau)
+    - cron: '5 10-23 * * *'
   workflow_dispatch: # Allows you to trigger it manually if the laptop was asleep
 
 jobs:
