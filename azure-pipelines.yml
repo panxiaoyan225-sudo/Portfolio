@@ -4,7 +4,7 @@ schedules:
   branches:
     include:
     - main
-  always: true # This key ensures that the scheduled pipeline will trigger even if there have been no new commits or code changes since the last run. 
+  always: true # This key ensures that the scheduled pipeline will trigger even if no new commits or code changes since the last run. 
   #It's useful for jobs that need to run at a scheduled frequency regardless of repository activity 
   #(such as health checks, reporting, or warming up production resources).
 
@@ -14,8 +14,8 @@ trigger:
     - main
 
 pool:
-  name: 'MyLocalLaptop'
-  #  vmImage: 'ubuntu-latest' # Azure Cloud machine to run the job
+  name: 'MyLocalLaptop' # this is the local machine runner
+  #  vmImage: 'ubuntu-latest' # this is theAzure Cloud machine to run the job
 
 variables:
 - group: 'Portfolio-Secrets'

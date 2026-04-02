@@ -12,7 +12,7 @@ on:
 
 jobs:
   run-monitor:
-    # This targets your local laptop runner
+    # This targets the local machine runner.
     runs-on: [self-hosted, PortfolioRunner]
     #runs-on: ubuntu-latest  the cloud run machine
 
@@ -39,5 +39,5 @@ jobs:
         run: |
           & $env:PYTHON_EXE monitor_portfolio.py
         env:
-          # Note: You must add SLACK_TOKEN to GitHub Settings > Secrets > Actions
+          # Note: Must add SLACK_TOKEN to GitHub Settings > Secrets > Actions
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
