@@ -5,11 +5,12 @@ on:
     branches:
       - main
   schedule:
-    # This covers 6:45 AM EDT to 19:45 PM EDT
-    # UTC 10:45 to 23:45
-    - cron: '45 10-23 * * *' 
-    #- cron: '15 0-3 * * *'   # 8:15 PM to 11:15 PM EDT
-  workflow_dispatch:
+    # This runs at minute 0 and 30 of every hour 
+    # from 10:00 UTC to 23:59 UTC
+    # (6:00 AM EDT to 7:59 PM EDT)
+    - cron: '*/30 10-23 * * *'
+    
+  workflow_dispatch: # Allows you to trigger it manually if the laptop was asleep
 
 jobs:
   run-monitor:
