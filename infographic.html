@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Monitor | Architecture Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #F8FAFC; color: #1E293B; font-family: 'Inter', sans-serif; }
+        .chart-container { position: relative; width: 100%; max-width: 700px; margin: auto; height: 350px; }
+        .card { background: white; border-radius: 1rem; box-shadow: 0 4px 20px -5px rgba(0,0,0,0.1); padding: 2rem; border: 1px solid #E2E8F0; }
+        .node { background: #1A237E; color: white; padding: 1rem; border-radius: 0.5rem; text-align: center; font-weight: bold; width: 100%; max-width: 300px; }
+    </style>
+</head>
+<body class="p-4 md:p-12">
+    <div class="max-w-5xl mx-auto space-y-12">
+        <!-- Header -->
+        <header class="text-center space-y-4">
+            <h1 class="text-4xl md:text-5xl font-black text-[#1A237E] tracking-tight">Portfolio Monitor & Auto-Warmer</h1>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto italic">
+                Strategic technical overview of a triple-platform CI/CD orchestration designed for serverless efficiency and zero-latency starts.
+            </p>
+        </header>
+
+        <!-- KPI Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card text-center border-t-4 border-[#FF6D00]">
+                <span class="text-sm font-bold uppercase text-slate-400">Environment</span>
+                <div class="text-2xl font-bold text-[#1A237E]">Python 3.12</div>
+            </div>
+            <div class="card text-center border-t-4 border-[#00BFA5]">
+                <span class="text-sm font-bold uppercase text-slate-400">Platform</span>
+                <div class="text-2xl font-bold text-[#1A237E]">Google Cloud</div>
+            </div>
+            <div class="card text-center border-t-4 border-[#4285F4]">
+                <span class="text-sm font-bold uppercase text-slate-400">Monitoring</span>
+                <div class="text-2xl font-bold text-[#1A237E]">Slack API</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Left: Visual Stats -->
+            <div class="card flex flex-col justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-[#1A237E] mb-2">Layer Complexity Analysis</h2>
+                    <p class="text-sm text-slate-500 mb-6">Evaluating the operational overhead and critical nature of each infrastructure layer.</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="complexityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Right: Flowchart -->
+            <div class="card flex flex-col items-center">
+                <h2 class="text-xl font-bold text-[#1A237E] mb-8 self-start">The Pipeline Logic Gate</h2>
+                <div class="flex flex-col items-center space-y-4 w-full">
+                    <div class="node">Orchestration<br><span class="text-xs font-normal opacity-70">GitHub Actions / Azure DevOps</span></div>
+                    <div class="text-slate-300 text-2xl font-bold">↓</div>
+                    <div class="node" style="background:#FF6D00">Validation Gate<br><span class="text-xs font-normal opacity-70">Fail-Fast Secret Checks</span></div>
+                    <div class="text-slate-300 text-2xl font-bold">↓</div>
+                    <div class="node" style="background:#00BFA5">Execution<br><span class="text-xs font-normal opacity-70">GCP Cloud Run Health Ping</span></div>
+                    <div class="text-slate-300 text-2xl font-bold">↓</div>
+                    <div class="node" style="background:#4A154B">Alerting<br><span class="text-xs font-normal opacity-70">Real-time Slack Notification</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Footer -->
+        <footer class="bg-[#1A237E] rounded-2xl p-8 text-white">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-[#00BFA5] font-bold text-lg mb-2">Decision Intelligence Approach</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        By utilizing a local Windows agent for execution, this architecture minimizes cloud compute costs while maintaining a high-availability heartbeat for the GCP-hosted portfolio application.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 content-start">
+                    <span class="bg-white/10 px-3 py-1 rounded text-xs">Self-Hosted Runner</span>
+                    <span class="bg-white/10 px-3 py-1 rounded text-xs">Redundant Crons</span>
+                    <span class="bg-white/10 px-3 py-1 rounded text-xs">Secret Management</span>
+                    <span class="bg-white/10 px-3 py-1 rounded text-xs">UTF-8 Native</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('complexityChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Ingestion', 'Validation', 'Sync', 'Persistence', 'Alerting'],
+                datasets: [{
+                    label: 'Operational Priority',
+                    data: [15, 40, 10, 15, 20],
+                    backgroundColor: ['#1A237E', '#FF6D00', '#00BFA5', '#1A237E', '#FF6D00'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1E293B',
+                        titleFont: { size: 14 },
+                        callbacks: {
+                            title: (items) => items[0].label + ' Layer'
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { display: false }, ticks: { display: false } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
