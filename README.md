@@ -6,7 +6,7 @@ Production-grade CI/CD pipeline with triple-platform orchestration (GitHub Actio
 
 Most modern cloud-native applications suffer from "Cold Start" latency on serverless platforms. This project demonstrates a **high-performance, low-footprint architecture** optimized for Google Cloud Run.
 
-## 🏗️ System Architecture
+## 🏗️ System Architecture [🚀 View Interactive Infographic](https://panxiaoyan225-sudo.github.io/Portfolio_DevOps/infographic.html)
 
 The framework orchestrates infrastructure health through five specialized layers.
 1. **Ingestion Layer:** Multi-channel ingestion supporting **GitHub**, **GitHub Actions**, and **Azure DevOps Repos**. Any `git push` to either origin triggers a parallel automated workflow.
