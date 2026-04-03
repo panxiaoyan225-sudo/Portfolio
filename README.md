@@ -8,6 +8,34 @@ Most modern cloud-native applications suffer from "Cold Start" latency on server
 
 ## 🏗️ System Architecture
 
+### **Architecture Diagram**
+
+```mermaid
+graph TD
+    subgraph "Orchestration Layer"
+        GH[GitHub Actions] -- cron/push --> Runner[Self-Hosted Windows Agent]
+        ADO[Azure DevOps Pipelines] -- cron/push --> Runner
+    end
+
+    subgraph "Validation & Security"
+        Runner --> Env[Python 3.12 / UTF-8 Environment]
+        Secrets1[(Azure Variable Groups)] -.-> Runner
+        Secrets2[(GitHub Secrets)] -.-> Runner
+        Runner --> Gate{Fail-Fast Logic Gate}
+    end
+
+    subgraph "Execution & Delivery"
+        Gate -- Success --> Warm[HTTP Warmer / Health Check]
+        Warm -- Ping --> GCR[Google Cloud Run Portfolio]
+        GCR -- Status 200 --> Notify[Slack API Notification]
+        Gate -- Failure --> Alert[Real-time Error Alert]
+        Alert --> Notify
+    end
+
+    style GCR fill:#4285F4,color:#fff
+    style Notify fill:#4A154B,color:#fff
+    style Gate fill:#f96,stroke:#333
+
 The framework orchestrates infrastructure health through five specialized layers:
 
 1. **Ingestion Layer:** Multi-channel ingestion supporting **GitHub**, **GitHub Actions**, and **Azure DevOps Repos**. Any `git push` to either origin triggers a parallel automated workflow.
