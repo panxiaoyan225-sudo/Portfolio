@@ -5,7 +5,7 @@ Production-grade CI/CD pipeline with triple-platform orchestration (GitHub Actio
 
 ## 🎯 Project Philosophy
 
-Most modern cloud-native applications suffer from "Cold Start" latency on serverless platforms. This project demonstrates a **high-performance, low-footprint architecture** optimized for Google Cloud Run.
+Most modern cloud-native applications suffer from "Cold Start" latency on serverless platforms. This project demonstrates a **high-performance, low-footprint architecture** optimized for Google Cloud Run. 
 
 ## 🏗️ System Architecture 
 
