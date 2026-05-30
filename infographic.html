@@ -6,84 +6,110 @@
     <title>Portfolio Monitor | Architecture Infographic</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #F8FAFC; color: #1E293B; font-family: 'Inter', sans-serif; }
-        .chart-container { position: relative; width: 100%; max-width: 700px; margin: auto; height: 350px; }
-        .card { background: white; border-radius: 1rem; box-shadow: 0 4px 20px -5px rgba(0,0,0,0.1); padding: 2rem; border: 1px solid #E2E8F0; }
-        .node { background: #1A237E; color: white; padding: 1rem; border-radius: 0.5rem; text-align: center; font-weight: bold; width: 100%; max-width: 300px; }
+        body { 
+            background-color: #FAFAFA; 
+            color: #18181B; 
+            font-family: 'Inter', system-ui, sans-serif; 
+        }
+        .chart-container { position: relative; width: 100%; height: 160px; }
+        .premium-card { 
+            background: white; 
+            border-radius: 0.5rem; 
+            padding: 1.25rem; 
+            border: 1px solid #E4E4E7; 
+        }
     </style>
 </head>
-<body class="p-4 md:p-12">
-    <div class="max-w-5xl mx-auto space-y-12">
-        <!-- Header -->
-        <header class="text-center space-y-4">
-            <h1 class="text-4xl md:text-5xl font-black text-[#1A237E] tracking-tight">Portfolio Monitor & Auto-Warmer</h1>
-            <p class="text-lg text-slate-500 max-w-2xl mx-auto italic">
+<body class="antialiased py-10 px-4">
+
+    <main class="max-w-xl mx-auto space-y-6">
+
+        <header class="space-y-2 border-b border-zinc-200 pb-5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-5 h-5 bg-zinc-900 rounded flex items-center justify-center text-white font-bold text-[10px]">P</div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-zinc-500">Portfolio Monitor Framework</span>
+                </div>
+                <span class="text-[10px] font-medium text-zinc-400 bg-zinc-100 px-2 py-0.5 rounded">Core Overview</span>
+            </div>
+            <h1 class="text-2xl font-extrabold tracking-tight text-zinc-900 pt-1">Portfolio Monitor & Auto-Warmer</h1>
+            <p class="text-xs text-zinc-500 leading-relaxed italic font-normal">
                 Strategic technical overview of a triple-platform CI/CD orchestration designed for serverless efficiency and zero-latency starts.
             </p>
         </header>
 
-        <!-- KPI Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="card text-center border-t-4 border-[#FF6D00]">
-                <span class="text-sm font-bold uppercase text-slate-400">Environment</span>
-                <div class="text-2xl font-bold text-[#1A237E]">Python 3.12</div>
+        <section class="grid grid-cols-3 gap-3">
+            <div class="premium-card text-center py-2.5">
+                <span class="text-[9px] font-bold uppercase tracking-wider text-zinc-400 block mb-0.5">Environment</span>
+                <div class="text-sm font-bold text-zinc-900">Python 3.12</div>
             </div>
-            <div class="card text-center border-t-4 border-[#00BFA5]">
-                <span class="text-sm font-bold uppercase text-slate-400">Platform</span>
-                <div class="text-2xl font-bold text-[#1A237E]">Google Cloud</div>
+            <div class="premium-card text-center py-2.5">
+                <span class="text-[9px] font-bold uppercase tracking-wider text-zinc-400 block mb-0.5">Platform</span>
+                <div class="text-sm font-bold text-emerald-600">Google Cloud</div>
             </div>
-            <div class="card text-center border-t-4 border-[#4285F4]">
-                <span class="text-sm font-bold uppercase text-slate-400">Monitoring</span>
-                <div class="text-2xl font-bold text-[#1A237E]">Slack API</div>
+            <div class="premium-card text-center py-2.5">
+                <span class="text-[9px] font-bold uppercase tracking-wider text-zinc-400 block mb-0.5">Monitoring</span>
+                <div class="text-sm font-bold text-zinc-900">Slack API</div>
+            </div>
+        </section>
+
+        <div class="premium-card space-y-3">
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-zinc-400">Layer Complexity Analysis</h3>
+                <p class="text-[11px] text-zinc-500">Evaluating the operational overhead and critical nature of each infrastructure layer.</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="complexityChart"></canvas>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Left: Visual Stats -->
-            <div class="card flex flex-col justify-between">
-                <div>
-                    <h2 class="text-xl font-bold text-[#1A237E] mb-2">Layer Complexity Analysis</h2>
-                    <p class="text-sm text-slate-500 mb-6">Evaluating the operational overhead and critical nature of each infrastructure layer.</p>
+        <div class="premium-card space-y-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-zinc-400">The Pipeline Logic Gate</h3>
+            
+            <div class="grid grid-cols-7 items-center text-center bg-zinc-50 p-2 rounded border border-zinc-200/60 text-[10px] gap-0.5">
+                <div class="col-span-1">
+                    <span class="font-bold block text-zinc-800 leading-tight">Orchestrator</span>
+                    <span class="text-[9px] text-zinc-400 block mt-0.5">GitHub / Azure</span>
                 </div>
-                <div class="chart-container">
-                    <canvas id="complexityChart"></canvas>
+                <div class="col-span-1 text-zinc-300 font-bold text-xs">→</div>
+                <div class="col-span-1">
+                    <span class="font-bold block text-amber-700 leading-tight">Validation</span>
+                    <span class="text-[9px] text-zinc-400 block mt-0.5">Fail-Fast</span>
                 </div>
-            </div>
-
-            <!-- Right: Flowchart -->
-            <div class="card flex flex-col items-center">
-                <h2 class="text-xl font-bold text-[#1A237E] mb-8 self-start">The Pipeline Logic Gate</h2>
-                <div class="flex flex-col items-center space-y-4 w-full">
-                    <div class="node">Orchestration<br><span class="text-xs font-normal opacity-70">GitHub Actions / Azure DevOps</span></div>
-                    <div class="text-slate-300 text-2xl font-bold">↓</div>
-                    <div class="node" style="background:#FF6D00">Validation Gate<br><span class="text-xs font-normal opacity-70">Fail-Fast Secret Checks</span></div>
-                    <div class="text-slate-300 text-2xl font-bold">↓</div>
-                    <div class="node" style="background:#00BFA5">Execution<br><span class="text-xs font-normal opacity-70">GCP Cloud Run Health Ping</span></div>
-                    <div class="text-slate-300 text-2xl font-bold">↓</div>
-                    <div class="node" style="background:#4A154B">Alerting<br><span class="text-xs font-normal opacity-70">Real-time Slack Notification</span></div>
+                <div class="col-span-1 text-zinc-300 font-bold text-xs">→</div>
+                <div class="col-span-1">
+                    <span class="font-bold block text-emerald-700 leading-tight">Execution</span>
+                    <span class="text-[9px] text-zinc-400 block mt-0.5">GCP Ping</span>
+                </div>
+                <div class="col-span-1 text-zinc-300 font-bold text-xs">→</div>
+                <div class="col-span-1">
+                    <span class="font-bold block text-zinc-900 leading-tight">Alerting</span>
+                    <span class="text-[9px] text-zinc-400 block mt-0.5">Slack Live</span>
                 </div>
             </div>
         </div>
 
-        <!-- Detail Footer -->
-        <footer class="bg-[#1A237E] rounded-2xl p-8 text-white">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-[#00BFA5] font-bold text-lg mb-2">Decision Intelligence Approach</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        By utilizing a local Windows agent for execution, this architecture minimizes cloud compute costs while maintaining a high-availability heartbeat for the GCP-hosted portfolio application.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-2 content-start">
-                    <span class="bg-white/10 px-3 py-1 rounded text-xs">Self-Hosted Runner</span>
-                    <span class="bg-white/10 px-3 py-1 rounded text-xs">Redundant Crons</span>
-                    <span class="bg-white/10 px-3 py-1 rounded text-xs">Secret Management</span>
-                    <span class="bg-white/10 px-3 py-1 rounded text-xs">UTF-8 Native</span>
-                </div>
+        <footer class="premium-card bg-zinc-900 border-zinc-900 text-zinc-300 space-y-4">
+            <div class="space-y-1">
+                <h3 class="text-emerald-400 font-bold text-xs uppercase tracking-wider">Decision Intelligence Approach</h3>
+                <p class="text-[11px] text-zinc-400 leading-relaxed font-normal">
+                    By utilizing a local Windows agent for execution, this architecture minimizes cloud compute costs while maintaining a high-availability heartbeat for the GCP-hosted portfolio application.
+                </p>
+            </div>
+            
+            <div class="pt-3 border-t border-zinc-800 flex flex-wrap gap-1.5">
+                <span class="bg-zinc-800 px-2 py-0.5 rounded text-[10px] text-zinc-300">Self-Hosted Runner</span>
+                <span class="bg-zinc-800 px-2 py-0.5 rounded text-[10px] text-zinc-300">Redundant Crons</span>
+                <span class="bg-zinc-800 px-2 py-0.5 rounded text-[10px] text-zinc-300">Secret Management</span>
+                <span class="bg-zinc-800 px-2 py-0.5 rounded text-[10px] text-zinc-300">UTF-8 Native</span>
             </div>
         </footer>
-    </div>
+
+    </main>
 
     <script>
         const ctx = document.getElementById('complexityChart').getContext('2d');
@@ -92,10 +118,10 @@
             data: {
                 labels: ['Ingestion', 'Validation', 'Sync', 'Persistence', 'Alerting'],
                 datasets: [{
-                    label: 'Operational Priority',
                     data: [15, 40, 10, 15, 20],
-                    backgroundColor: ['#1A237E', '#FF6D00', '#00BFA5', '#1A237E', '#FF6D00'],
-                    borderRadius: 8
+                    backgroundColor: ['#27272A', '#D97706', '#71717A', '#52525B', '#A1A1AA'],
+                    borderRadius: 3,
+                    barThickness: 16
                 }]
             },
             options: {
@@ -104,16 +130,25 @@
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: '#1E293B',
-                        titleFont: { size: 14 },
+                        backgroundColor: '#18181B',
+                        padding: 8,
+                        titleFont: { size: 11 },
+                        bodyFont: { size: 11 },
                         callbacks: {
                             title: (items) => items[0].label + ' Layer'
                         }
                     }
                 },
                 scales: {
-                    y: { beginAtZero: true, grid: { display: false }, ticks: { display: false } },
-                    x: { grid: { display: false } }
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: '#F4F4F5' }, 
+                        ticks: { color: '#A1A1AA', font: { size: 10 } } 
+                    },
+                    x: { 
+                        grid: { display: false }, 
+                        ticks: { color: '#27272A', font: { size: 10, weight: '500' } } 
+                    }
                 }
             }
         });
